@@ -1,0 +1,23 @@
+LOG_FILES_PATH= "/home/stephen-nyansoho-machera/Desktop/BashScripting/logs"
+ERROR_PATTERN=("ERROR","FATAL","CRITICAL")
+
+echo -e "\n HERE ARE LOG FILES"
+LOG_FILES=$(find $LOG_FILES_PATH -name "*log")
+echo "$LOG_FILES"
+
+for LOG_FILE in $LOG_FILES; do
+    
+    echo -e "\nError Count in $LOG_FILE"
+    echo "======================"
+    grep -c "$ERROR_PATTERN" "$LOG_FILE"
+
+    echo -e "\nFatal Count in $LOG_FILE"
+    echo "======================"
+    grep -c "FATAL" "$LOG_FILE"
+
+    echo -e "\nCritical Count in $LOG_FILE"
+    echo "======================"
+    grep -c "CRITICAL" "$LOG_FILE"
+
+done
+
