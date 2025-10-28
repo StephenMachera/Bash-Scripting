@@ -1,0 +1,92 @@
+Code
+LOG_FILES_PATH= "/home/stephen-nyansoho-machera/Desktop/BashScripting/logs"
+REPORT_FILE="/home/stephen-nyansoho-machera/Desktop/report.txt"
+
+echo "An array that contain Error Patterns">"$REPORT_FILE"
+ERROR_PATTERNS=("ERROR" "FATAL" "CRITICAL")
+echo "$ERROR_PARTERNS">>"$REPORT_FILE"
+
+echo -e "\n HERE ARE LOG FILES">>"$REPORT_FILE"
+LOG_FILES=$(find $LOG_FILES_PATH -name "*log")
+echo "$LOG_FILES">>"$REPORT_FILE"
+
+for LOG_FILE in $LOG_FILES; do
+    for PATTERN in ${ERROR_PATTERNS[@]}; do
+        echo -e "\n $PATTERN Count in $LOG_FILE">>"$REPORT_FILE"
+        echo "======================">>"$REPORT_FILE"
+        grep -c "$PATTERN" "$LOG_FILE">>"$REPORT_FILE"
+    done
+
+done
+
+
+Output text file
+An array that contain Error Patterns
+
+
+ HERE ARE LOG FILES
+./BashScripting/logs/payment_service_application.log
+./BashScripting/logs/auth_service_application.log
+./BashScripting/logs/system_monitor_application.log
+./BashScripting/logs/database_application.log
+./BashScripting/logs/webserver_application.log
+
+ ERROR Count in ./BashScripting/logs/payment_service_application.log
+======================
+117
+
+ FATAL Count in ./BashScripting/logs/payment_service_application.log
+======================
+4
+
+ CRITICAL Count in ./BashScripting/logs/payment_service_application.log
+======================
+21
+
+ ERROR Count in ./BashScripting/logs/auth_service_application.log
+======================
+142
+
+ FATAL Count in ./BashScripting/logs/auth_service_application.log
+======================
+5
+
+ CRITICAL Count in ./BashScripting/logs/auth_service_application.log
+======================
+25
+
+ ERROR Count in ./BashScripting/logs/system_monitor_application.log
+======================
+133
+
+ FATAL Count in ./BashScripting/logs/system_monitor_application.log
+======================
+2
+
+ CRITICAL Count in ./BashScripting/logs/system_monitor_application.log
+======================
+19
+
+ ERROR Count in ./BashScripting/logs/database_application.log
+======================
+127
+
+ FATAL Count in ./BashScripting/logs/database_application.log
+======================
+4
+
+ CRITICAL Count in ./BashScripting/logs/database_application.log
+======================
+19
+
+ ERROR Count in ./BashScripting/logs/webserver_application.log
+======================
+121
+
+ FATAL Count in ./BashScripting/logs/webserver_application.log
+======================
+8
+
+ CRITICAL Count in ./BashScripting/logs/webserver_application.log
+======================
+26
